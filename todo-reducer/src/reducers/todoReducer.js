@@ -1,12 +1,10 @@
-export const initialState = {
-  todos: [
-    {
-      item: "Learn about reducers",
-      completed: false,
-      id: 3892987589
-    }
-  ]
-};
+export const initialState = [
+  {
+    item: "Learn about Javascript",
+    completed: false,
+    id: 1
+  }
+];
 
 export const todoReducer = (state, action) => {
   // console.log(state);
@@ -17,10 +15,7 @@ export const todoReducer = (state, action) => {
         completed: false,
         id: new Date()
       };
-      return {
-        ...state,
-        todos: [...state.todos, newTodo]
-      };
+      return [...state, newTodo];
 
     case "TOGGLE_EDIT":
       let toggle = state.map(todo => {
@@ -33,10 +28,20 @@ export const todoReducer = (state, action) => {
           return todo;
         }
       });
+      //   let toggle = console.log(state);
       return toggle;
+
     case "CLEAR_COMPLETED":
-      let clear = console.log(state);
+      let clear = state.filter(task => {
+        if (task.completed === true) {
+          return !task.completed;
+        } else {
+          return task;
+        }
+      });
+
       return clear;
+
     default:
       return state;
   }

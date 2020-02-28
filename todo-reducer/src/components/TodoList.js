@@ -6,7 +6,7 @@ export default function TodoList(props) {
 
   return (
     <div>
-      {props.state.todos.map(
+      {props.state.map(
         todo => (
           <TodoForm item={todo.item} key={todo.id} completed={todo.completed} />
         )
